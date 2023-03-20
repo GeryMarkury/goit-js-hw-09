@@ -29,8 +29,6 @@ const second = 1000;
   return { days, hours, minutes, seconds };
 };
 
-
-
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -52,29 +50,29 @@ flatpickr(inputEl, options);
 startBtn.disabled = true;
 startBtn.addEventListener('click', onStartClick);
 
-// function addLeadingZero(str) {
-   
-//         str.padStart(2, '0');
-
-// };
+function addLeadingZero(str) { 
+  let newStr = "";
+  if (str.length === 1) {
+    newStr = str.padStart(2, '0');
+  } else {
+    return str;
+  }
+  return newStr;    
+};
 
 function onStartClick() {
     timerId = setInterval(() => {
     let ms = selectedDate - new Date();
     let toSelectedDate = convertMs(ms);
     
-        let days = JSON.stringify(toSelectedDate.days);
-        let outputDays = addLeadingZero(days);
-        console.log(outputDays);
-        // let outputHours = JSON.stringify(toSelectedDate.hours)
-        // let outputMinutes = JSON.stringify(toSelectedDate.minutes);
-        // let outputSeconds = JSON.stringify(toSelectedDate.seconds);
-
-        
-    // daysNumber.textContent = addLeadingZero(outputDays);
-    // hoursNumber.textContent = addLeadingZero(outputHours);
-    // minsNumber.textContent = addLeadingZero(outputMinutes);
-    // secsNumber.textContent = addLeadingZero(outputSeconds);
+    daysNumber.textContent = addLeadingZero(JSON.stringify(toSelectedDate.days));
+    hoursNumber.textContent = addLeadingZero(JSON.stringify(toSelectedDate.hours));
+    minsNumber.textContent = addLeadingZero(JSON.stringify(toSelectedDate.minutes));
+    secsNumber.textContent = addLeadingZero(JSON.stringify(toSelectedDate.seconds));
+      
+    if (toSelectedDate.days === 0 && toSelectedDate.hours === 0 && toSelectedDate.minutes === 0 && toSelectedDate.seconds === 0) {
+      clearInterval(timerId);
+    }
     }, 1000);
 };
 
