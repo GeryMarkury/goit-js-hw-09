@@ -61,7 +61,7 @@ function addLeadingZero(str) {
 };
 
 function onStartClick() {
-    timerId = setInterval(() => {
+    const timerId = setInterval(() => {
     let ms = selectedDate - new Date();
     let toSelectedDate = convertMs(ms);
     
