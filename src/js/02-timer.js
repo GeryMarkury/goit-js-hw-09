@@ -46,7 +46,6 @@ const options = {
 };
 
 flatpickr(inputEl, options);
-console.log(selectedDate);
 
 startBtn.disabled = true;
 startBtn.addEventListener('click', onStartClick);
